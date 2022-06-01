@@ -36,13 +36,13 @@ jobs:
       - run: make install
       - run: make lint
       - run: make test
-      - name: Test & publish code coverage
+  # - name: Test & publish code coverage
          # Publish code coverage on Code Climate
-         # https://github.com/chebok/codeclimate-action
-        uses: chebok/codeclimate-action@v3
+         # https://github.com/paambaati/codeclimate-action
+     #   uses: chebok/codeclimate-action@v3
          # Add Code Climate secret key
-        env:
-         CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE }}
-        with:
-         coverageCommand: make test
-         debug: true
+     #   env:
+     #     CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE }}
+      #  with:
+       #  coverageCommand: make test-coverage
+       #  debug: true
