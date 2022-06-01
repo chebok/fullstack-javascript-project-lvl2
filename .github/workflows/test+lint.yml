@@ -4,11 +4,5 @@ jobs:
  Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: run linter
-        run: make lint
-      - name: run test
-        run: make test
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: make lint
+      - run: make test
