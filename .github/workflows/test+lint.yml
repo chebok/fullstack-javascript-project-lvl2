@@ -1,0 +1,8 @@
+name: Test+lint
+on: [push]
+jobs:
+ Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: make lint
+      - run: make test
