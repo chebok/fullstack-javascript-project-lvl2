@@ -8,4 +8,4 @@ publish:
 lint:
 		npx eslint . # eslinting
 test:
-		NODE_OPTIONS=--experimental-vm-modules npx jest # тесты без бабеля
+		NODE_OPTIONS=--experimental-vm-modules npx jest --coverage # тесты без бабеля
