@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 import genDiff from '../src/index.js';
-const command = (filepath1, filepath2) => genDiff(filepath1, filepath2);
+const command = (filepath1, filepath2) => console.log(genDiff(filepath1, filepath2));
 
 program
   .name('gendiff')

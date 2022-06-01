@@ -35,7 +35,6 @@ const genDiff = (filepath1, filepath2) => {
   }
   const difference = sortKeys.map(callback);
   const diffToPrint =(`{\n${difference.join('\n')}\n}`);
-  console.log(diffToPrint);
+  return diffToPrint;
 };
 export default genDiff;
-
