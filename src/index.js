@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
-import process from 'node:process';
 import path from 'node:path';
 import _ from 'lodash';
+import parsing from './parsers.js';
 
 const genDiff = (filepath1, filepath2) => {
   const nameDir = '/home/chebok/fullstack-javascript-project-lvl2';
@@ -14,8 +14,8 @@ const genDiff = (filepath1, filepath2) => {
     path2 = path.resolve('/home/chebok/fullstack-javascript-project-lvl2', filepath2);
   }
   
-  const obj1 = JSON.parse(readFileSync(path1));
-  const obj2 = JSON.parse(readFileSync(path2));
+  const obj1 = parsing(path1);
+  const obj2 = parsing(path2);
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const sortKeys = [...new Set([...keys1, ...keys2])].sort();
