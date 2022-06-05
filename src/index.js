@@ -1,40 +1,45 @@
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import _ from 'lodash';
 import parsing from './parsers.js';
+import stringify from './stringify.js';
+import _ from 'lodash';
+import isObject from './isObject.js';
 
-const genDiff = (filepath1, filepath2) => {
-  const nameDir = '/home/chebok/fullstack-javascript-project-lvl2';
-  let path1 = filepath1;
-  let path2 = filepath2;
-  if (!filepath1.startsWith(nameDir)) {
-    path1 = path.resolve('/home/chebok/fullstack-javascript-project-lvl2', filepath1);
-  }
-  if (!filepath2.startsWith(nameDir)) {
-    path2 = path.resolve('/home/chebok/fullstack-javascript-project-lvl2', filepath2);
-  }
+
+const genDiff = (filepath1, filepath2, formatter = 'stylish') => {
+
+  const obj1 = parsing(filepath1);
+  const obj2 = parsing(filepath2);
   
-  const obj1 = parsing(path1);
-  const obj2 = parsing(path2);
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const sortKeys = [...new Set([...keys1, ...keys2])].sort();
+  
 
-  const callback = (key) => {
+  
+  const iter = (obj1, obj2, depth = 0, replacer = '  ') => {
+    const callback = (key) => {
       if (keys1.includes(key) && keys2.includes(key)) {
+        if (isObject(obj1[key]) && isObject(obj2[key])) {
+          return (`${replacer.repeat(2 + 2 * depth)}${key}: ${iter(obj1[key], obj2[key], depth + 1)}`);
+        }
         if (obj1[key] === obj2[key]) {
-          return (`    ${key}: ${obj1[key]}`);
-        } return (`  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}`);
+          return (`${replacer.repeat(2 + 2 * depth)}${key}: ${stringify(obj1[key], depth)}`);
+        } return (`${replacer.repeat(1 + 2 * depth)}- ${key}: ${stringify(obj1[key], depth)}\n${replacer.repeat(1 + 2 * depth)}+ ${key}: ${stringify(obj2[key], depth)}`);
       }
       if (keys1.includes(key)) {
-        return (`  - ${key}: ${obj1[key]}`);
+        return (`${replacer.repeat(1 + 2 * depth)}- ${key}: ${stringify(obj1[key], depth)}`);
       }
       if (keys2.includes(key)) {
-        return (`  + ${key}: ${obj2[key]}`);  
+        return (`${replacer.repeat(1 + 2 * depth)}+ ${key}: ${stringify(obj2[key], depth)}`); 
       }
   }
-  const difference = sortKeys.map(callback);
-  const diffToPrint =(`{\n${difference.join('\n')}\n}`);
-  return diffToPrint;
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    const sortKeys = _.uniq(_.union(keys1, keys2)).sort();
+    const difference = sortKeys.map(callback);
+    const stylish = (dif) => (`{\n${dif.join('\n')}\n${replacer.repeat(depth * 2)}}`);
+    if (formatter === 'stylish') {
+      return stylish(difference);
+    }
+    return console.log('Error! Wrong formatter!')
+  }
+  const result = iter(obj1, obj2);
+  return result;
 };
 export default genDiff;

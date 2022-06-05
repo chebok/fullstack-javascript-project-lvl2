@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for parsers.js</title>
+    <title>Code coverage report for stringify.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> parsers.js</h1>
+        <h1><a href="index.html">All files</a> stringify.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/10</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/10</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -75,46 +75,31 @@
 <a name='L10'></a><a href='#L10'>10</a>
 <a name='L11'></a><a href='#L11'>11</a>
 <a name='L12'></a><a href='#L12'>12</a>
-<a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L13'></a><a href='#L13'>13</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">53x</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { readFileSync } from 'node:fs';
-import yaml from 'js-yaml';
-import path from 'node:path';
-const parsing = (filePath) =&gt; {
-  const nameDir = '/home/chebok/fullstack-javascript-project-lvl2';
-  let pathfix = filePath;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!filePath.startsWith(nameDir)) {
-<span class="cstat-no" title="statement not covered" >    pathfix = path.resolve('/home/chebok/fullstack-javascript-project-lvl2', filePath);</span>
-  }
-  const ext = path.extname(pathfix);
-  if (ext === '.json') {
-    return JSON.parse(readFileSync(pathfix));
-  }
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (ext === '.yaml' || ext === '.yml') {
-    return yaml.load(readFileSync(pathfix));
-  } 
-};
-export default parsing;</pre></td></tr></table></pre>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const stringify = (value, depth = <span class="branch-0 cbranch-no" title="branch not covered" >0,</span> replacer = '    ') =&gt; {
+    if (typeof value !== 'object' || value === null) {
+      return String(value);
+    }
+    const keys = Object.keys(value);
+    const stringin = keys.map((key) =&gt; {
+      if (typeof value[key] !== 'object' || value === null) {
+        return (`${replacer.repeat(depth + 2)}${key}: ${value[key]}\n`);
+      } return (`${replacer.repeat(depth + 2)}${key}: ${stringify(value[key], depth + 1, replacer)}\n`);
+    });
+    return (`{\n${stringin.join('')}${replacer.repeat(1 + depth)}}`);
+  };
+  export default stringify;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
