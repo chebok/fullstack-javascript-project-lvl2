@@ -1,4 +1,2 @@
-const isObject = (obj) => {
-     return (typeof obj === 'object' && obj !== null);
-};
+const isObject = (obj) => (typeof obj === 'object' && obj !== null);
 export default isObject;

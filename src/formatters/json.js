@@ -1,4 +1,4 @@
-import makeDiff from "../makeDiff.js";
+import makeDiff from '../makeDiff.js';
 
 const json = (obj1, obj2) => {
   const difference = makeDiff(obj1, obj2);
