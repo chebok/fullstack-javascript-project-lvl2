@@ -6,6 +6,8 @@
 <a href="https://asciinema.org/a/hLueWevKHNOKfi6FV7bjZMJpX" target="_blank"><img src="https://asciinema.org/a/hLueWevKHNOKfi6FV7bjZMJpX.svg" /></a>
 ### Stylish format
 <a href="https://asciinema.org/a/zveHkgpSPjhRiQTQI7fpo54KW" target="_blank"><img src="https://asciinema.org/a/zveHkgpSPjhRiQTQI7fpo54KW.svg" /></a>
+### Plain format
+<a href="https://asciinema.org/a/60Zo7UQGuSL19zOb8ELDdc3mz" target="_blank"><img src="https://asciinema.org/a/60Zo7UQGuSL19zOb8ELDdc3mz.svg" /></a>
 ### Codeclimate
 <a href="https://codeclimate.com/github/chebok/fullstack-javascript-project-lvl2/maintainability"><img src="https://api.codeclimate.com/v1/badges/ecdc5413087a6393b858/maintainability" /></a>
 ### Lint+Test:
