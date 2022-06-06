@@ -1,18 +1,14 @@
 import { readFileSync } from 'node:fs';
 import yaml from 'js-yaml';
 import path from 'node:path';
+
 const parsing = (filePath) => {
-  const nameDir = '/home/chebok/fullstack-javascript-project-lvl2';
-  let pathfix = filePath;
-  if (!filePath.startsWith(nameDir)) {
-    pathfix = path.resolve('/home/chebok/fullstack-javascript-project-lvl2', filePath);
-  }
-  const ext = path.extname(pathfix);
+  const ext = path.extname(filePath);
   if (ext === '.json') {
-    return JSON.parse(readFileSync(pathfix));
+    return JSON.parse(readFileSync(filePath));
   }
   if (ext === '.yaml' || ext === '.yml') {
-    return yaml.load(readFileSync(pathfix));
-  } 
+    return yaml.load(readFileSync(filePath));
+  }
 };
 export default parsing;
