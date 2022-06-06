@@ -18,6 +18,7 @@ const path9 = getFixturePath('file2.yaml');
 const diff1 = getFixturePath('pizzaDiff.txt');
 const diff4 = getFixturePath('jsonsDiff.txt');
 const diff5 = getFixturePath('plainDiff.txt');
+const diff6 = getFixturePath('eslintJsonFormat.txt');
 const diff2 = (`{\n  - brain: undefined\n  - girls: cool\n  - http: hexlet.io\n  - ping: 125\n}`);
 const diff3 = (`{\n\n}`);
 test('genDiff', () => {
@@ -26,5 +27,6 @@ test('genDiff', () => {
   expect(genDiff(path4, path5)).toEqual(diff3);
   expect(genDiff(path6, path7)).toEqual(readFileSync(diff4, 'utf8'));
   expect(genDiff(path8, path9)).toEqual(readFileSync(diff4, 'utf8'));
-  expect(genDiff(path6, path7, 'plain')).toEqual(readFileSync(diff5, 'utf8'));
+  expect(genDiff(path6, path7, 'plain2')).toEqual(readFileSync(diff5, 'utf8'));
+  expect(genDiff(path6, path7, 'plain2')).toEqual(readFileSync(diff5, 'utf8'));
 });
