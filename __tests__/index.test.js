@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import path from 'node:path';
 import { dirname } from 'path';
 import genDiff from '../src/index.js';
 import { fileURLToPath } from 'url';
-import { readFileSync } from 'node:fs';
+import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
@@ -14,8 +15,8 @@ const diff4 = getFixturePath('jsonsDiff.txt');
 const diff5 = getFixturePath('plainDiff.txt');
 const diff6 = getFixturePath('eslintJsonFormat.txt');
 test('genDiff', () => {
-  expect(genDiff(path6, path7)).toEqual(readFileSync(diff4, 'utf8'));
-  expect(genDiff(path8, path9)).toEqual(readFileSync(diff4, 'utf8'));
-  expect(genDiff(path6, path7, 'plain')).toEqual(readFileSync(diff5, 'utf8'));
-  expect(genDiff(path6, path7, 'json')).toEqual(readFileSync(diff6, 'utf8'));
+  expect(genDiff(path6, path7)).toEqual(fs.readFileSync(diff4, 'utf8'));
+  expect(genDiff(path8, path9)).toEqual(fs.readFileSync(diff4, 'utf8'));
+  expect(genDiff(path6, path7, 'plain')).toEqual(fs.readFileSync(diff5, 'utf8'));
+  expect(genDiff(path6, path7, 'json')).toEqual(fs.readFileSync(diff6, 'utf8'));
 });

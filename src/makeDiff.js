@@ -10,7 +10,7 @@ const makeDiff = (obj1, obj2) => {
       return ({ key: key, status: '-', value: obj1[key] });
     }
     if (!keys1.includes(key)) {
-      return ({ key: key, status: '+', value: obj2[key] });; 
+      return ({ key: key, status: '+', value: obj2[key] }); 
     }
     if (isObject(obj1[key]) && isObject(obj2[key])) {
       return ({ key: key, status: 'nest', value: makeDiff(obj1[key], obj2[key]) });
