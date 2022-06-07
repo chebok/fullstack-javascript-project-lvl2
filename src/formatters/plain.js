@@ -20,12 +20,10 @@ const plain = (obj1, obj2) => {
           return (`Property '${depth}${difObj.key}' was added with value: ${checking(difObj.value)}`);
         case '-+':
           return (`Property '${depth}${difObj.key}' was updated. From ${checking(difObj.value1)} to ${checking(difObj.value2)}`);
-        case '0':
-          return 'no changes';
         case 'nest':
           return (`${iter(difObj.value, (`${depth}${difObj.key}.`))}`);
         default:
-          break;
+          return 'no changes';
       }
     };
     const plainDiff = difference.map(callback);
