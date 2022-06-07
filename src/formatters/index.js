@@ -3,13 +3,16 @@ import plain from './plain.js';
 import json from './json.js';
 
 const formater = (obj1, obj2, format) => {
+  const stylishDiff = stylish(obj1, obj2);
+  const plainDiff = plain(obj1, obj2);
+  const jsonDiff = json(obj1, obj2);
   switch (format) {
-    case 'stylish':
-      return stylish(obj1, obj2);
     case 'plain':
-      return plain(obj1, obj2);
+      return plainDiff;
     case 'json':
-      return json(obj1, obj2);
+      return jsonDiff;
+    default:
+      return stylishDiff;
   }
 };
 export default formater;

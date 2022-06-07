@@ -1,8 +1,8 @@
 import isObject from '../isObject.js';
 import makeDiff from '../makeDiff.js';
 
-const plain2 = (obj1, obj2) => {
-  const difference = makeDiff(obj1, obj2);
+const plain = (obj1, obj2) => {
+  const diffTree = makeDiff(obj1, obj2);
   const iter = (difference, depth = '') => {
     const callback = (difObj) => {
       const checking = (value) => {
@@ -24,13 +24,15 @@ const plain2 = (obj1, obj2) => {
           return 'no changes';
         case 'nest':
           return (`${iter(difObj.value, (`${depth}${difObj.key}.`))}`);
-      }    
+        default:
+          break;
+      }
     };
     const plainDiff = difference.map(callback);
     const cleanDifference = plainDiff.filter((value) => value !== 'no changes');
     const resulting = (dif) => (`${dif.join('\n')}`);
     return resulting(cleanDifference);
   };
-  return iter(difference);
+  return iter(diffTree);
 };
-export default plain2;
+export default plain;
