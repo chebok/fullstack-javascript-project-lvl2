@@ -5,7 +5,7 @@ import genDiff from '../src/index.js';
 const command = (filepath1, filepath2) => {
   const diffToPrint = (genDiff(filepath1, filepath2, program.opts().format));
   console.log(diffToPrint);
-} 
+};
 
 program
   .name('gendiff')

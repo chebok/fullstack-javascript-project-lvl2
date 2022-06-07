@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import path from 'node:path';
+import path from 'path';
 import { dirname } from 'path';
 import genDiff from '../src/index.js';
 import { fileURLToPath } from 'url';
