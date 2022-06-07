@@ -16,9 +16,11 @@ const makeDiff = (obj1, obj2) => {
       return ({ key, status: 'nest', value: makeDiff(obj1[key], obj2[key]) });
     }
     if (obj1[key] !== obj2[key]) {
-      return ({ key, status: '-+', value1: obj1[key], value2: obj2[key] });
+      return ({
+        key, status: '-+', value1: obj1[key], value2: obj2[key] 
+      });
     } return ({ key, status: '0', value: obj1[key] });
-  }
+  };
   const difference = sortKeys.map(callback);
   return difference;
 };
